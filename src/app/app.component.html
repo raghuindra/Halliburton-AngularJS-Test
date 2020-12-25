@@ -1,0 +1,42 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="200"
+    height="20"
+    alt="Angular Logo"
+    src="./../assets/white.png"
+  />
+</div>
+
+<div class="content" role="main">
+
+  <div  class="container-fluid m-top100">
+    <div class="row">
+      <div class="col-xl">
+        <div class="card custom-card" >
+          <div class="card-body">
+            <h5 class="card-title">Consume RabbitMQ Message</h5>
+            <button (click)="getStatus()" class="btn btn-primary">Fetch</button>
+            <div *ngIf="isStatusAvailable()" >
+            <p class="card-text"> Status: {{rabbitMQ.status}}</p>
+            <p class="card-text"> Message: {{rabbitMQ.topic.message}}</p>
+            <p class="card-text"> Time: {{rabbitMQ.topic.id | date:'mm/dd/yyyy hh:mm:ss'}}</p>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl">
+        <div class="card custom-card" >
+          <div class="card-body">
+            <h5 class="card-title">RabbitMQ</h5>
+            <button (click)="QueueAction(true)" *ngIf="isRabbitMQStopped()" class="btn btn-primary">Start Publishing</button>
+            <button (click)="QueueAction(false)" *ngIf="!isRabbitMQStopped()" class="btn btn-primary">Stop Publishing</button>
+            <p class="card-text">{{response}}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
